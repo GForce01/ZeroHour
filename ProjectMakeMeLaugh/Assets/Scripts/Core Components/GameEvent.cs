@@ -25,6 +25,7 @@ public class GameEvent : MonoBehaviour
         if (hasMiniGame)
         {
             miniGame.ParentEvent = this;
+            miniGame.StartMiniGame();
         }
     }
     public void EndGameEvent()

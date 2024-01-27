@@ -140,7 +140,6 @@ public class AirPumpHandle : MonoBehaviour
         if (hasTouchedBottom && hasTouchedBottom)
         {
             hasTouchedTop = hasTouchedBottom = false;
-            _pipeAnimator.SetTrigger("PumpAir");
             PumpCompleted();
         }
         
@@ -170,6 +169,7 @@ public class AirPumpHandle : MonoBehaviour
 
     private void PumpCompleted()
     {
+        _pipeAnimator.SetTrigger("PumpAir");
         PumpCompletedEvent?.Invoke();
     }
     
