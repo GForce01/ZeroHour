@@ -111,7 +111,7 @@ public class HydraulicChairMiniGame : MiniGame
     public override void WinMiniGame()
     {
         base.WinMiniGame(); // Call the base class method
-
+        hasStarted = false;
         Debug.LogError("win mini game");
         // Reset current height to the original height
         currentHeight = originalHeight;

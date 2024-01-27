@@ -520,7 +520,7 @@ MonoBehaviour:
   OnGameEnd:
     m_PersistentCalls:
       m_Calls: []
-  ChairTransform: {fileID: 0}
+  ChairTransform: {fileID: 1746722315}
 --- !u!1 &725827040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1085,11 @@ PrefabInstance:
 --- !u!4 &1746722314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4402948301945643330, guid: e43cbb4776c57eb48aa39eadd586373f, type: 3}
+  m_PrefabInstance: {fileID: 1746722313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1746722315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7213270433815628060, guid: e43cbb4776c57eb48aa39eadd586373f, type: 3}
   m_PrefabInstance: {fileID: 1746722313}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1860441105
