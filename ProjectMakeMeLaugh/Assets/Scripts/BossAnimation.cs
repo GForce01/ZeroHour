@@ -27,7 +27,7 @@ public class BossAnimation : MonoBehaviour
     [Tooltip("Bool switch for deciding should head toggle")]
     public bool toggleHead
     {
-        get { return toggleHead; }
+        get { return _toggleHead; }
         set
         {
             if (value == false)
@@ -35,10 +35,11 @@ public class BossAnimation : MonoBehaviour
                 Head1.SetActive(true);
                 Head2.SetActive(false);
             }
-            toggleHead = value;
+            _toggleHead = value;
 
         }
     }
+    private bool _toggleHead = true;
 
     void Start()
     {
