@@ -12,10 +12,10 @@
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
-/[Mm]emoryCaptures/
+ProjectMakeMeLaugh/[Mm]emoryCaptures/
 
 # Recordings can get excessive in size
-/[Rr]ecordings/
+ProjectMakeMeLaugh/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -68,6 +68,13 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
+ProjectMakeMeLaugh/[Aa]ssets/[Ss]treamingAssets/aa.meta
+ProjectMakeMeLaugh/[Aa]ssets/[Ss]treamingAssets/aa/*
 ProjectMakeMeLaugh/Temp/UnityLockfile
+ProjectMakeMeLaugh/[Ll]ibrary/
+ProjectMakeMeLaugh/[Tt]emp/
+ProjectMakeMeLaugh/[Oo]bj/
+ProjectMakeMeLaugh/[Bb]uild/
+ProjectMakeMeLaugh/[Bb]uilds/
+ProjectMakeMeLaugh/[Ll]ogs/
+ProjectMakeMeLaugh/[Uu]ser[Ss]ettings/
