@@ -39,15 +39,21 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private void Update()
     {
-        
+        if (gameStarted)
+        {
+            gameStarted = false;
+            StartGame();
+        }
     }
 
     public void StartGame()
     {
-        gameStarted = true;
         OnGameStart?.Invoke();
+        EventIndex = 0;
+        
+        GameEvents[EventIndex].StartGameEvent();
     }
 
     public void EndGame()
@@ -60,14 +66,14 @@ public class GameManager : MonoBehaviour
     public void MoveToNextEvent()
     {
         EventIndex++;
-        if (GameEvents[EventIndex])
-        {
-            GameEvents[EventIndex].StartGameEvent();
-        }
-        else
+        if (EventIndex >= GameEvents.Count)
         {
             //end the game if there are no events left
             EndGame();
+        }
+        else if (GameEvents[EventIndex])
+        {
+            GameEvents[EventIndex].StartGameEvent();
         }
     }
 
