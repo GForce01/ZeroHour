@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        gameStarted = true;
         OnGameStart?.Invoke();
+        EventIndex = 0;
+        GameEvents[EventIndex].StartGameEvent();
     }
 
     public void EndGame()
