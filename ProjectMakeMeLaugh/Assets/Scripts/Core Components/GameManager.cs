@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnGameEnd;
 
+    public Transform ChairTransform;
+
     private void Awake()
     {
         Instance = this;

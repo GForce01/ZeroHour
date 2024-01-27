@@ -17,19 +17,19 @@ public class MiniGame : MonoBehaviour
     public UnityEvent OnMiniGameFailed;
     
     
-    public void StartMiniGame()
+    public virtual void StartMiniGame()
     {
         OnMiniGameStarted?.Invoke();
     }
 
-    public void WinMiniGame()
+    public virtual void WinMiniGame()
     {
         OnMiniGameWon?.Invoke();
         
         ParentEvent.EndGameEvent();
     }
 
-    public void FailMiniGame()
+    public virtual void FailMiniGame()
     {
         OnMiniGameFailed?.Invoke();
         

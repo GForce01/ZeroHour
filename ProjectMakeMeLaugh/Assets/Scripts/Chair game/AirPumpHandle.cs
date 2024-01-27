@@ -30,6 +30,12 @@ public class AirPumpHandle : MonoBehaviour
     private Vector3 targetPosition;
 
     private Coroutine lowerDownCoroutine;
+    
+    // Define a delegate for the pump completion event
+    public delegate void PumpCompletedEventHandler();
+
+    // Define the event based on the delegate
+    public event PumpCompletedEventHandler PumpCompletedEvent;
 
     void Start()
     {
@@ -135,7 +141,7 @@ public class AirPumpHandle : MonoBehaviour
         {
             hasTouchedTop = hasTouchedBottom = false;
             _pipeAnimator.SetTrigger("PumpAir");
-           
+            PumpCompleted();
         }
         
     }
@@ -160,6 +166,11 @@ public class AirPumpHandle : MonoBehaviour
         // Ensure the handle is exactly at the minimum position
         pumpHandleTransform.localPosition = targetDownPosition;
         
+    }
+
+    private void PumpCompleted()
+    {
+        PumpCompletedEvent?.Invoke();
     }
     
 }
