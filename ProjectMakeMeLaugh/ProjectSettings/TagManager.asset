@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Boss
+    uniqueID: 3198259303
+    locked: 0
+  - name: Furnitures
+    uniqueID: 727984081
+    locked: 0
