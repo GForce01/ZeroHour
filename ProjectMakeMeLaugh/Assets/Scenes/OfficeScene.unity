@@ -3270,6 +3270,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.4245283
       objectReference: {fileID: 0}
+    - target: {fileID: 3646004770558421104, guid: 8133d54bd2c6c9b4c89cd92479e0fd33, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3855003786764896904, guid: 8133d54bd2c6c9b4c89cd92479e0fd33, type: 3}
       propertyPath: m_Name
       value: Pump
