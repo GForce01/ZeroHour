@@ -37,6 +37,7 @@ public class GameEvent : MonoBehaviour
                 yield return new WaitForSeconds(_clipSource.clip.length);
                 EndGameEvent();
             }
+            StartCoroutine(Coroutine());
         }
     }
     public void EndGameEvent()
