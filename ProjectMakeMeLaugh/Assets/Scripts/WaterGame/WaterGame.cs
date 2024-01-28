@@ -74,7 +74,14 @@ public class WaterGame : MiniGame
 
     public void RoundOne()
     {
-        PlayAudioAndWait(dialogueClips[0]);
+        PlayAudioAndWait(dialogueClips[0], () =>
+        {
+            
+            
+            
+            //type method name here
+        });
+        
         
     }
 
@@ -90,17 +97,18 @@ public class WaterGame : MiniGame
 
     ///Audio
 
-    public void PlayAudioAndWait(AudioClip clip, Action callback)
+    public void PlayAudioAndWait(AudioClip clip, Action callback=null)
     {
         StartCoroutine(PlayAudioClip(clip, callback));
     }
 
-    IEnumerator PlayAudioClip(AudioClip clip, Action callback)
+    IEnumerator PlayAudioClip(AudioClip clip, Action callback=null)
     {
         audioSource.clip = clip;
         audioSource.Play();
 
         yield return new WaitForSeconds(clip.length);
+        callback?.Invoke();
     }
 
 
