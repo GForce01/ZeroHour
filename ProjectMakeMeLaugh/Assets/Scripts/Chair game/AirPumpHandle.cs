@@ -52,6 +52,8 @@ public class AirPumpHandle : MonoBehaviour
         }
 
         targetPosition = originalPosition = pumpHandleTransform.localPosition;
+        
+        DisablePump();
     }
 
     void Update()
