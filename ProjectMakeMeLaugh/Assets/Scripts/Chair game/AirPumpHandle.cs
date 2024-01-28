@@ -172,5 +172,22 @@ public class AirPumpHandle : MonoBehaviour
         _pipeAnimator.SetTrigger("PumpAir");
         PumpCompletedEvent?.Invoke();
     }
-    
+
+
+    public void EnablePump()
+    {
+        if (pumpHandleCollider)
+        {
+            pumpHandleCollider.enabled = true;
+        }
+        
+    }
+
+    public void DisablePump()
+    {
+        if (pumpHandleCollider)
+        {
+            pumpHandleCollider.enabled = false;
+        }
+    }
 }

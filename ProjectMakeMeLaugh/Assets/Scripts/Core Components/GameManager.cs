@@ -31,10 +31,15 @@ public class GameManager : MonoBehaviour
 
     public bool gameStarted;
 
-    public UnityEvent OnGameEnd;
+    public int AcceptableFailures = 5;
+    public UnityEvent OnGameWon;
+    public UnityEvent OnGameLost;
 
     public Transform ChairTransform;
     public AudioSource bossAudio;
+
+    private int failedEvents=0;
+    
 
     private void Awake()
     {
@@ -59,15 +64,29 @@ public class GameManager : MonoBehaviour
         GameEvents[EventIndex].StartGameEvent();
     }
 
-    public void EndGame()
+    public void EndGame(bool hasWon)
     {
         gameStarted = false;
-        OnGameEnd?.Invoke();
+        if(hasWon)
+            OnGameWon?.Invoke();
+        else
+            OnGameLost?.Invoke();
     }
 
 
     public void MoveToNextEvent()
     {
+        var oldEvent = GameEvents[EventIndex];
+        if (oldEvent.hasMiniGame)
+        {
+            if (oldEvent.miniGame.hasFailed)
+                failedEvents++;
+        }
+
+        if (failedEvents > AcceptableFailures)
+        {
+            EndGame(false);
+        }
         IEnumerator WaitForRandomWindow()
         {
             yield return new WaitForSeconds(Random.Range(MinDelayBetweenEvents, MaxDelayBetweenEvents));
@@ -75,7 +94,7 @@ public class GameManager : MonoBehaviour
             if (EventIndex >= GameEvents.Count)
             {
                 //end the game if there are no events left
-                EndGame();
+                EndGame(true);
             }
             else if (GameEvents[EventIndex])
             {
