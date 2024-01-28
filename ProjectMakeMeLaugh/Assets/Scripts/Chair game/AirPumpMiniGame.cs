@@ -57,7 +57,8 @@ public class HydraulicChairMiniGame : MiniGame
                 // Check if the chair is at its normal height
                 if (currentHeight <= acceptableHeight)
                 {
-                    // Invoke MiniGameFailed event
+                    //just reset to original height when failing
+                    chairTransform.localPosition = new Vector3(chairTransform.localPosition.x, originalHeight, chairTransform.localPosition.z);
                     FailMiniGame();
                     handle.DisablePump();
                     yield break;
