@@ -31,6 +31,14 @@ public class AirPumpHandle : MonoBehaviour
 
     private Coroutine lowerDownCoroutine;
 
+    public AudioSource pumpSound;
+    
+    // Define a delegate for the pump completion event
+    public delegate void PumpCompletedEventHandler();
+
+    // Define the event based on the delegate
+    public event PumpCompletedEventHandler PumpCompletedEvent;
+
     void Start()
     {
         // If collider is not assigned, use the collider on this GameObject
@@ -42,11 +50,12 @@ public class AirPumpHandle : MonoBehaviour
         // If transform is not assigned, use the transform on this GameObject
         if (pumpHandleTransform == null)
         {
-            pumpHandleTransform = transform;
+            UnityEngine.Debug.LogError("Pump handle transform not defined");
         }
 
-        originalPosition = pumpHandleTransform.position;
-        targetPosition = originalPosition;
+        targetPosition = originalPosition = pumpHandleTransform.localPosition;
+        
+        DisablePump();
     }
 
     void Update()
@@ -80,7 +89,7 @@ public class AirPumpHandle : MonoBehaviour
             targetPosition.y = newY;
 
             // Smoothly move towards the new position
-            pumpHandleTransform.position = Vector3.Lerp(pumpHandleTransform.position, targetPosition, Time.deltaTime * dragRate);
+            pumpHandleTransform.localPosition = Vector3.Lerp(pumpHandleTransform.localPosition, targetPosition, Time.deltaTime * dragRate);
 
             // Check if pump is complete when dragging
             CheckPumpCompletion();
@@ -135,8 +144,7 @@ public class AirPumpHandle : MonoBehaviour
         if (hasTouchedBottom && hasTouchedBottom)
         {
             hasTouchedTop = hasTouchedBottom = false;
-            _pipeAnimator.SetTrigger("PumpAir");
-           
+            PumpCompleted();
         }
         
     }
@@ -151,16 +159,44 @@ public class AirPumpHandle : MonoBehaviour
     {
         Vector3 targetDownPosition = new Vector3(originalPosition.x, minHeight, originalPosition.z);
 
-        while (Mathf.Abs(pumpHandleTransform.position.y - minHeight)> 0.01f  )
+        while (Mathf.Abs(pumpHandleTransform.localPosition.y - minHeight)> 0.1f  )
         {
-            pumpHandleTransform.position = Vector3.Lerp(pumpHandleTransform.position, targetDownPosition, Time.deltaTime * lowerDownRate);
-            targetPosition = pumpHandleTransform.position;
+            pumpHandleTransform.localPosition = Vector3.Lerp(pumpHandleTransform.localPosition, targetDownPosition, Time.deltaTime * lowerDownRate);
+            targetPosition = pumpHandleTransform.localPosition;
             yield return null;
         }
 
         // Ensure the handle is exactly at the minimum position
-        pumpHandleTransform.position = targetDownPosition;
+        pumpHandleTransform.localPosition = targetDownPosition;
         
     }
-    
+
+    private void PumpCompleted()
+    {
+        _pipeAnimator.SetTrigger("PumpAir");
+
+        if (pumpSound)
+        {
+            pumpSound.PlayOneShot(pumpSound.clip);
+        }
+        PumpCompletedEvent?.Invoke();
+    }
+
+
+    public void EnablePump()
+    {
+        if (pumpHandleCollider)
+        {
+            pumpHandleCollider.enabled = true;
+        }
+        
+    }
+
+    public void DisablePump()
+    {
+        if (pumpHandleCollider)
+        {
+            pumpHandleCollider.enabled = false;
+        }
+    }
 }
