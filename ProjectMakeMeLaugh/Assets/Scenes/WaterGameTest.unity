@@ -7695,8 +7695,9 @@ MonoBehaviour:
   xOffset: 0
   minOffset: 6.5
   maxOffset: 11.2
-  sensitivity: 1
-  moveSpeed: 8
+  sensitivity: 8
+  minMoveSpeed: 8
+  maxMoveSpeed: 50
   isMoving: 0
   isDrinking: 0
 --- !u!65 &917085758

@@ -23,7 +23,8 @@ public class FeedingHand : MonoBehaviour
     public float minOffset = 1; //min and max distance for success
     public float maxOffset = 3;
     public float sensitivity = 1;
-    public float moveSpeed = 1;
+    public float minMoveSpeed = 1;
+    public float maxMoveSpeed = 1;
     [SerializeField] private bool isMoving = false;
 
     private Vector2 targetPosition;
@@ -121,7 +122,8 @@ public class FeedingHand : MonoBehaviour
             mouseXDistance = mouseEnd.x - mouseStart.x;
 
             xOffset = mouseXDistance * sensitivity;
-            targetPosition = new Vector2(rbStartPos.x + xOffset, cupRB.position.y);
+            float newX = Mathf.Clamp(xOffset, 0, 12.3f);
+            targetPosition = new Vector2(rbStartPos.x + newX, cupRB.position.y);
         }
     }
 
@@ -130,7 +132,10 @@ public class FeedingHand : MonoBehaviour
     {
         if (isDragging)
         {
-            if (Vector2.Distance(cupRB.position, targetPosition) < 0.01f)
+            float distance = Vector2.Distance(cupRB.position, targetPosition);
+            float speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, distance);
+
+            if (distance < 0.01f)
             {
                 isMoving = false;
             }
@@ -141,7 +146,7 @@ public class FeedingHand : MonoBehaviour
 
             if (isMoving)
             {
-                Vector2 newPosition = Vector2.MoveTowards(cupRB.position, targetPosition, moveSpeed * Time.fixedDeltaTime);
+                Vector2 newPosition = Vector2.MoveTowards(cupRB.position, targetPosition, speed * Time.fixedDeltaTime);
                 cupRB.MovePosition(newPosition);
             }
             
