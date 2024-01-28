@@ -846,6 +846,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2704293837183706073, guid: 6250e452d7883e14291d06cf3c16c027, type: 3}
   m_PrefabInstance: {fileID: 1654376306}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &1663542659 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7718773044658001957, guid: c4904a8fac9b7f942af1218a47c4b83c, type: 3}
+  m_PrefabInstance: {fileID: 3747737949758588573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1708586239 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6049301421430424202, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
@@ -1964,6 +1969,10 @@ PrefabInstance:
       propertyPath: mailAudio
       value: 
       objectReference: {fileID: 3747737949758588597}
+    - target: {fileID: 4967709211723373688, guid: 7457dbb966037f9409fdb4706e5db0e1, type: 3}
+      propertyPath: shredAudio
+      value: 
+      objectReference: {fileID: 1663542659}
     - target: {fileID: 5720196220696220952, guid: 7457dbb966037f9409fdb4706e5db0e1, type: 3}
       propertyPath: releaseVelocity
       value: 20
