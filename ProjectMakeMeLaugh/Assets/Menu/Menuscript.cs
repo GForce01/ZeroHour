@@ -11,7 +11,7 @@ public class Menuscript : MonoBehaviour
 
     public void play()
     {
-        
+        SceneManager.LoadScene("OfficeScene Aayush");
     }
 
     public void presscredits()

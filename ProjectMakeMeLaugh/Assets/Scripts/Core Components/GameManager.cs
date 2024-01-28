@@ -67,10 +67,19 @@ public class GameManager : MonoBehaviour
     public void EndGame(bool hasWon)
     {
         gameStarted = false;
-        if(hasWon)
+        if (hasWon)
+        {
             OnGameWon?.Invoke();
+            SceneManager.LoadScene("Scene_win");
+
+        }
+
         else
+        {
             OnGameLost?.Invoke();
+            SceneManager.LoadScene("Scene_lose");
+        }
+            
     }
 
 
