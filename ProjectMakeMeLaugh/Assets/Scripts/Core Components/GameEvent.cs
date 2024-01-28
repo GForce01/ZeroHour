@@ -36,6 +36,7 @@ public class GameEvent : MonoBehaviour
                 _clipSource.Play();
                 yield return new WaitForSeconds(_clipSource.clip.length);
                 EndGameEvent();
+                Debug.Log("ended random event");
             }
             StartCoroutine(Coroutine());
         }
@@ -44,5 +45,6 @@ public class GameEvent : MonoBehaviour
     {
         OnGameEventEnd?.Invoke();
         GameManager.Instance.MoveToNextEvent();
+        
     }
 }

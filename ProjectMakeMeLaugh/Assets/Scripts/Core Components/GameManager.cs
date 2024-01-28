@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     public void MoveToNextEvent()
     {
         var oldEvent = GameEvents[EventIndex];
+        
         if (oldEvent.hasMiniGame)
         {
             if (oldEvent.miniGame.hasFailed)
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
         {
             EndGame(false);
         }
+        
         IEnumerator WaitForRandomWindow()
         {
             yield return new WaitForSeconds(Random.Range(MinDelayBetweenEvents, MaxDelayBetweenEvents));
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
                 GameEvents[EventIndex].StartGameEvent();
             }
         }
-        StopCoroutine(WaitForRandomWindow());
+        StartCoroutine(WaitForRandomWindow());
        
     }
 

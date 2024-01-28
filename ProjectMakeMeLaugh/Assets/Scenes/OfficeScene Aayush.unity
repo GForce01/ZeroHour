@@ -820,6 +820,14 @@ PrefabInstance:
       propertyPath: ChairTransform
       value: 
       objectReference: {fileID: 1746722315}
+    - target: {fileID: 969274590436844988, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
+      propertyPath: MaxDelayBetweenEvents
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 969274590436844988, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
+      propertyPath: MinDelayBetweenEvents
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2231814970050543640, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
       propertyPath: OnMiniGameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
