@@ -347,4 +347,4 @@ MonoBehaviour:
   fileText: 
   tmp: {fileID: 3409410928049182162}
   slowDownSpeed: 1
-  releaseVelocity: 5
+  releaseVelocity: 25
