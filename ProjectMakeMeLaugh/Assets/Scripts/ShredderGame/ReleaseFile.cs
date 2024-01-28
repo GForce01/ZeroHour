@@ -10,6 +10,9 @@ public class ReleaseFile : MonoBehaviour
     public FileType machineType;
 
     public Animator _animator;
+
+    public AudioSource shredAudio;
+    public AudioSource mailAudio;
     void OnTriggerEnter2D(Collider2D other)
     {
         FileInteraction fileInteraction = other.GetComponent<FileInteraction>();
@@ -22,6 +25,16 @@ public class ReleaseFile : MonoBehaviour
         if (fileInteraction != null)
         {
             shredderController.HandleFileReleased(rightFile,fileInteraction);
+        }
+
+        if (shredAudio && machineType == FileType.Shred)
+        {
+            shredAudio.PlayOneShot(shredAudio.clip);
+        }
+
+        if (mailAudio && machineType == FileType.Mail)
+        {
+            mailAudio.PlayOneShot(mailAudio.clip);
         }
     }
 }

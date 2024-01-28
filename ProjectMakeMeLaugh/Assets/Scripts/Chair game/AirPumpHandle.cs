@@ -30,6 +30,8 @@ public class AirPumpHandle : MonoBehaviour
     private Vector3 targetPosition;
 
     private Coroutine lowerDownCoroutine;
+
+    public AudioSource pumpSound;
     
     // Define a delegate for the pump completion event
     public delegate void PumpCompletedEventHandler();
@@ -172,6 +174,11 @@ public class AirPumpHandle : MonoBehaviour
     private void PumpCompleted()
     {
         _pipeAnimator.SetTrigger("PumpAir");
+
+        if (pumpSound)
+        {
+            pumpSound.PlayOneShot(pumpSound.clip);
+        }
         PumpCompletedEvent?.Invoke();
     }
 
