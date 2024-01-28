@@ -7,10 +7,17 @@ using UnityEngine.Events;
 public class WaterGame : MiniGame
 {
     private FeedingHand hand;
+    private BossDrink drinkFace;
     private CameraManager cameraManager;
     private SpillDetection spillDetection;
+    public Collider dispencer;
 
-    public int maxSpillage = 30;
+    public AudioSource audioSource;
+    public AudioClip[] dialogueClips;
+    public AudioClip chokeClip;
+    public AudioClip gulpClip;
+
+    public int maxSpillage = 250;
     [SerializeField] private int currentSpillage = 0;
 
     public UnityEvent OnFeedSuccess;
@@ -18,9 +25,13 @@ public class WaterGame : MiniGame
     public UnityEvent OnSpilled;
     public UnityEvent OnNoFeed;
 
+    public UnityEvent OnCameraStart;
+    public UnityEvent OnCameraStop;
+
     private void Awake()
     {
         hand = FindObjectOfType<FeedingHand>();
+        drinkFace = FindObjectOfType<BossDrink>();
         hand.FeedSuccessEvent += FeedSuccessDetected;
         hand.ChokeEvent += ChokeDetected;
         hand.SpillEvent += SpillDetected;
@@ -33,14 +44,66 @@ public class WaterGame : MiniGame
 
     public override void StartMiniGame()
     {
-        base.StartMiniGame();   
+        base.StartMiniGame();
+        dispencer.enabled = true;
     }
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseDown();
+        }
+    }
+
+    private void MouseDown()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit) && hit.collider == dispencer)
+        {
+            OnCameraStart?.Invoke();
+        }
+    }
+
+
+    public void RoundOne()
+    {
+
+    }
+
+
+
 
     private void IncreaseWaterSpillage()
     {
         Debug.Log("Hello Water");
         currentSpillage += 1;
     }
+
+
+    ///Audio
+
+    public void PlayAudioAndWait(AudioClip clip)
+    {
+        StartCoroutine(PlayAudioClip(clip));
+    }
+
+    IEnumerator PlayAudioClip(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(clip.length);
+    }
+
+
+
 
     //Feed events
 
