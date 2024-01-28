@@ -532,7 +532,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456033356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -722,7 +722,19 @@ MonoBehaviour:
       m_Calls: []
   OnWaterZoomIn:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1860441107}
+        m_TargetAssemblyTypeName: WaterGame, Assembly-CSharp
+        m_MethodName: RoundOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWaterZoomOut:
     m_PersistentCalls:
       m_Calls: []
@@ -880,7 +892,11 @@ MonoBehaviour:
   MinDelayBetweenEvents: 10
   MaxDelayBetweenEvents: 30
   gameStarted: 0
-  OnGameEnd:
+  AcceptableFailures: 5
+  OnGameWon:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameLost:
     m_PersistentCalls:
       m_Calls: []
   ChairTransform: {fileID: 0}
@@ -2147,7 +2163,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648480728}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2222,6 +2238,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   miniGame: {fileID: 0}
+  isRandomEvent: 0
+  _clipSource: {fileID: 0}
 --- !u!4 &1677062614
 Transform:
   m_ObjectHideFlags: 0
@@ -2349,6 +2367,10 @@ MonoBehaviour:
   OnMiniGameFailed:
     m_PersistentCalls:
       m_Calls: []
+  hasFailed: 0
+  dispencer: {fileID: 0}
+  audioSource: {fileID: 0}
+  audioClips: []
   maxSpillage: 30
   currentSpillage: 0
   OnFeedSuccess:
@@ -2361,6 +2383,24 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnNoFeed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCameraStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: WaterGameStart
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnCameraStop:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1894662438
@@ -2568,6 +2608,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   miniGame: {fileID: 0}
+  isRandomEvent: 0
+  _clipSource: {fileID: 0}
 --- !u!4 &2024218985
 Transform:
   m_ObjectHideFlags: 0
