@@ -111,7 +111,7 @@ public class FeedingHand : MonoBehaviour
                     //end corutine
                 }
             }
-            cupRB.transform.localPosition = Vector3.zero;
+            //cupRB.transform.localPosition = Vector3.zero;
         }
         //anything else
     }
