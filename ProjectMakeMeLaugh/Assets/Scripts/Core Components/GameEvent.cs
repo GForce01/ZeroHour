@@ -14,7 +14,8 @@ public class GameEvent : MonoBehaviour
     public UnityEvent OnGameEventStart;
     public UnityEvent OnGameEventEnd;
     [FormerlySerializedAs("miniGamee")] [FormerlySerializedAs("MiniGame")] public MiniGame miniGame;
-
+    public bool isRandomEvent;
+    public AudioSource _clipSource;
 
     public void StartGameEvent()
     {
@@ -26,6 +27,16 @@ public class GameEvent : MonoBehaviour
         {
             miniGame.ParentEvent = this;
             miniGame.StartMiniGame();
+        }
+
+        if (isRandomEvent)
+        {
+            IEnumerator Coroutine()
+            {
+                _clipSource.Play();
+                yield return new WaitForSeconds(_clipSource.clip.length);
+                EndGameEvent();
+            }
         }
     }
     public void EndGameEvent()

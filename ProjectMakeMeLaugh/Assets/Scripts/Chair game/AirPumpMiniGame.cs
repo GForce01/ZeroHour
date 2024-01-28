@@ -38,10 +38,8 @@ public class HydraulicChairMiniGame : MiniGame
         fixCount = 0;
         restartCoroutine = true;
         chairLowerCoroutine = StartCoroutine(LowerChairRoutine());
-        
-        
         hasStarted = true;
-        
+        handle.EnablePump();
     }
     
 
@@ -61,6 +59,7 @@ public class HydraulicChairMiniGame : MiniGame
                 {
                     // Invoke MiniGameFailed event
                     FailMiniGame();
+                    handle.DisablePump();
                     yield break;
                 }
 
@@ -111,10 +110,11 @@ public class HydraulicChairMiniGame : MiniGame
     public override void WinMiniGame()
     {
         base.WinMiniGame(); // Call the base class method
-
+        hasStarted = false;
         Debug.LogError("win mini game");
         // Reset current height to the original height
         currentHeight = originalHeight;
         chairTransform.localPosition = new Vector3(chairTransform.localPosition.x, currentHeight, chairTransform.localPosition.z);
+        handle.DisablePump();
     }
 }

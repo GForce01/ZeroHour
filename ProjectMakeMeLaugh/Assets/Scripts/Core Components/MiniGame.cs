@@ -15,6 +15,8 @@ public class MiniGame : MonoBehaviour
     public UnityEvent OnMiniGameStarted;
     public UnityEvent OnMiniGameWon;
     public UnityEvent OnMiniGameFailed;
+
+    public bool hasFailed;
     
     
     public virtual void StartMiniGame()
@@ -24,15 +26,19 @@ public class MiniGame : MonoBehaviour
 
     public virtual void WinMiniGame()
     {
+        hasFailed = false;
         OnMiniGameWon?.Invoke();
         
         ParentEvent.EndGameEvent();
+        
     }
 
     public virtual void FailMiniGame()
     {
+        hasFailed = true;
         OnMiniGameFailed?.Invoke();
         
         ParentEvent.EndGameEvent();
+        
     }
 }
