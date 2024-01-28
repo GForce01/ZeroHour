@@ -1529,7 +1529,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969274590436844988, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
       propertyPath: gameStarted
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 969274590436844988, guid: 3432ec261003cf04182a0ec8c76a1e98, type: 3}
       propertyPath: ChairTransform
