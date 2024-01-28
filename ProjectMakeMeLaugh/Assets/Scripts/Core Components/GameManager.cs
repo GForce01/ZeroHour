@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameStart;
 
     public int EventIndex = 0;
-    public List<GameEvent> GameEvents;
+    public List<GameEvent> GameEvents;          //list of events arranged in the game
 
     public float MinDelayBetweenEvents=10f;
     public float MaxDelayBetweenEvents=30f;
@@ -34,10 +34,12 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameEnd;
 
     public Transform ChairTransform;
+    public AudioSource bossAudio;
 
     private void Awake()
     {
         Instance = this;
+        bossAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
