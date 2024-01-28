@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68fcc7557d1184418f2ffcf093bc862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasMiniGame: 0
+  hasMiniGame: 1
   OnGameEventStart:
     m_PersistentCalls:
       m_Calls: []
