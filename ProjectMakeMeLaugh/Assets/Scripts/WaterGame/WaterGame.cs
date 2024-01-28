@@ -22,11 +22,12 @@ public class WaterGame : MiniGame
 
     public override void StartMiniGame()
     {
-        base.StartMiniGame();
+        base.StartMiniGame();   
     }
 
     private void IncreaseWaterSpillage()
     {
         Debug.Log("Hello Water");
+        currentSpillage += 1;
     }
 }
