@@ -5,6 +5,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 
 /// <summary>
@@ -65,16 +66,22 @@ public class GameManager : MonoBehaviour
 
     public void MoveToNextEvent()
     {
-        EventIndex++;
-        if (EventIndex >= GameEvents.Count)
+        IEnumerator WaitForRandomWindow()
         {
-            //end the game if there are no events left
-            EndGame();
+            yield return new WaitForSeconds(Random.Range(MinDelayBetweenEvents, MaxDelayBetweenEvents));
+            EventIndex++;
+            if (EventIndex >= GameEvents.Count)
+            {
+                //end the game if there are no events left
+                EndGame();
+            }
+            else if (GameEvents[EventIndex])
+            {
+                GameEvents[EventIndex].StartGameEvent();
+            }
         }
-        else if (GameEvents[EventIndex])
-        {
-            GameEvents[EventIndex].StartGameEvent();
-        }
+        StopCoroutine(WaitForRandomWindow());
+       
     }
 
 
