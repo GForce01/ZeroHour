@@ -25,6 +25,8 @@ public class ShredderController : MonoBehaviour
 
     public FileMiniGame miniGame;
 
+    public CameraController controller;
+
     void Update()
     {
         if (isMiniGameActive)
@@ -42,6 +44,8 @@ public class ShredderController : MonoBehaviour
 
     public void StartGame(float duration)
     {
+
+        controller.ZoomInAndMoveToActualMiniGame();
 
         // Initialize or reset game variables
         timer = duration;
@@ -62,6 +66,7 @@ public class ShredderController : MonoBehaviour
             miniGame.FailMiniGame();
         }
 
+        controller.ZoomOutAndMoveToOriginalPosition();
         isMiniGameActive = false;
     }
 
