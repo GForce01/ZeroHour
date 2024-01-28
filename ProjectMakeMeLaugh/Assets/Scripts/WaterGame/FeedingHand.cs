@@ -25,6 +25,8 @@ public class FeedingHand : MonoBehaviour
     public float sensitivity = 1;
     public float minMoveSpeed = 1;
     public float maxMoveSpeed = 1;
+    [SerializeField] private float speed;
+    [SerializeField] private float distance;
     [SerializeField] private bool isMoving = false;
 
     private Vector2 targetPosition;
@@ -132,8 +134,8 @@ public class FeedingHand : MonoBehaviour
     {
         if (isDragging)
         {
-            float distance = Vector2.Distance(cupRB.position, targetPosition);
-            float speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, distance);
+            distance = Vector2.Distance(cupRB.position, targetPosition);
+            speed = Mathf.Lerp(minMoveSpeed, maxMoveSpeed, distance);
 
             if (distance < 0.01f)
             {
