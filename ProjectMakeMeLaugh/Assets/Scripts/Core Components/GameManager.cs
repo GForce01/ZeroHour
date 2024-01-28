@@ -111,4 +111,17 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void StartShredderGame()
+    {
+        if (GameEvents[EventIndex].hasMiniGame)
+        {
+            var game = GameEvents[EventIndex].GetComponentInChildren<FileMiniGame>();
+
+            if (game)
+            {
+                game.StartGame();
+            }
+        }
+    }
 }
